@@ -1,4 +1,4 @@
-package com.example.restapp;
+package com.klutzer.wineshop;
 
 import java.util.logging.Logger;
 

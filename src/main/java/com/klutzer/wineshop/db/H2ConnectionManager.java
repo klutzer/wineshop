@@ -1,7 +1,12 @@
 package com.klutzer.wineshop.db;
 
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
+
 import org.mentabean.BeanSession;
 import org.mentabean.jdbc.H2BeanSession;
+import org.mentabean.util.ScriptRunner;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -25,7 +30,12 @@ public class H2ConnectionManager extends ConnectionManager {
 	
 	@Override
 	public void preRun(BeanSession session) {
-		session.createTables();
+		ScriptRunner script = new ScriptRunner(session.getConnection());
+		try (InputStream in = getClass().getClassLoader().getResourceAsStream("initial_script.sql");) {
+			script.runScript(new InputStreamReader(in, Charset.forName("utf-8")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }
