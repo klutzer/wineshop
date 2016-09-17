@@ -3,5 +3,5 @@ create table clientes (
 	nome varchar not null);
 	
 create table tipos (
-	idtipos bigint auto_incremenet primary key,
+	idtipos bigint auto_increment primary key,
 	descricao varchar not null);

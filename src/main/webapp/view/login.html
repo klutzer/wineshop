@@ -1,0 +1,36 @@
+<div class="container">
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+			<div class="page-header">
+				<h1 class="text-center">
+					WineShop <small>login</small>
+				</h1>
+			</div>
+			<form name="formLogin">
+				<div class="alert alert-danger" ng-show="invalidUser">Usuário ou senha inválidos!</div>
+				<div class="form-group"
+					ng-class="{'has-error': formLogin.email.$invalid && formLogin.email.$dirty}">
+					<label for="email">E-mail</label> 
+					<input class="form-control"
+						ng-model="usuario.email" type="email" name="email" text="E-mail"
+						ng-required="true" /> 
+					<span class="help-block"
+						ng-show="formLogin.email.$invalid && formLogin.email.$dirty">
+						E-mail inválido! </span>
+				</div>
+				<div class="form-group"
+					ng-class="{'has-error': formLogin.senha.$invalid && formLogin.senha.$dirty}">
+					<label for="senha">Senha</label> <input class="form-control"
+						ng-model="usuario.senha" type="password" name="senha"
+						ng-required="true" /> <span class="help-block"
+						ng-show="formLogin.senha.$invalid && formLogin.senha.$dirty">
+						Informe uma senha! </span>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" name="button"
+						ng-click="login(usuario)" ng-disabled="formLogin.$invalid">Login</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
