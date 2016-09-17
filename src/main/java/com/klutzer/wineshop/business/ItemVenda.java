@@ -33,5 +33,9 @@ public class ItemVenda {
 	public void setSubtotal(Money subtotal) {
 		this.subtotal = subtotal;
 	}
+	
+	public void calcularSubtotal() {
+		subtotal = vinho.getValor().multiply(qtde);
+	}
 
 }

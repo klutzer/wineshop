@@ -34,5 +34,11 @@ angular.module("wineshop")
     url: "/vinho",
     controller: "vinhoCtrl",
     templateUrl: "view/vinho.html"
+  })
+  .state("main.novoPedido", {
+    authenticated: true,
+    url: "/novoPedido",
+    controller: "novoPedidoCtrl",
+    templateUrl: "view/novoPedido.html"
   });
 });

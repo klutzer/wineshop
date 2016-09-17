@@ -1,8 +1,7 @@
 package com.klutzer.wineshop.business;
 
-public class Cliente {
+public class Cliente extends BasicBean {
 
-	private long id;
 	private String nome;
 	
 	public Cliente() {}
@@ -11,12 +10,6 @@ public class Cliente {
 		this.id = id;
 	}
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public String getNome() {
 		return nome;
 	}

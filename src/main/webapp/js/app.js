@@ -1,9 +1,10 @@
 //Usar ui-navbar
-angular.module("wineshop", ["ui.bootstrap", "ui.router", "ui.navbar"]);
+angular.module("wineshop", ["ui.bootstrap", "ui.router", "ui.navbar", "ngCookies"]);
 
 angular.module("wineshop")
 .constant("KEYS", {
-	user: "userKey"
+	user: "userKey",
+	pedidoAtual: "wineshopPedidoAtualKey"
 })
 .constant("config", {
   baseUrl: "http://localhost:8080/wineshop/api"
