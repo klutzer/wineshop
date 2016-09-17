@@ -39,7 +39,7 @@ public class AbstractTest extends JerseyTest {
 		forceSet(TestProperties.CONTAINER_PORT, "0");
 		
 		return ServletDeploymentContext
-				.forServlet(new ServletContainer(new App(new H2ConnectionManager())))
+				.forServlet(new ServletContainer(new App(new H2ConnectionManager(false))))
 				.addListener(ContextListener.class)
 				.build();
 	}

@@ -52,7 +52,7 @@ public class App extends ResourceConfig {
 	}
 	
 	public App() {
-		this(new H2ConnectionManager());
+		this(new H2ConnectionManager(true));
 		register(new LoggingFilter(Logger.getLogger(getClass().getSimpleName()), true));
 	}
 	
