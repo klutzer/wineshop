@@ -23,7 +23,6 @@ public class VinhoDAO extends GenericDAO<Vinho> {
 		
 		// proxy para construção da query
 		Vinho vinho = aliasVinho.pxy();
-		TipoVinho tipo = aliasTipo.pxy();
 		
 		return builder.select(aliasVinho, aliasTipo)
 				.from(aliasVinho)

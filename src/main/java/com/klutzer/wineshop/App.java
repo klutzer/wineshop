@@ -1,8 +1,6 @@
 package com.klutzer.wineshop;
 
-import static org.mentacontainer.impl.SingletonFactory.*;
-import io.swagger.jaxrs.listing.ApiListingResource;
-import io.swagger.jaxrs.listing.SwaggerSerializers;
+import static org.mentacontainer.impl.SingletonFactory.singleton;
 
 import java.sql.Connection;
 import java.util.logging.Logger;
@@ -27,6 +25,10 @@ import com.klutzer.wineshop.business.Vinho;
 import com.klutzer.wineshop.db.ConnectionManager;
 import com.klutzer.wineshop.db.DBTypes;
 import com.klutzer.wineshop.db.H2ConnectionManager;
+
+import io.swagger.converter.ModelConverters;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
 
 @SuppressWarnings("deprecation")
 @ApplicationPath("/api/*")
@@ -140,6 +142,9 @@ public class App extends ResourceConfig {
         conf.setPrettyPrint(true);
         conf.setBasePath("/wineshop/api");
         conf.setScan(true);
+        
+        // informando o Swagger como ele deve apresentar os tipos customizados (tal como o Money)
+        ModelConverters.getInstance().addConverter(new CustomModelConverter());
 	}
 	
 }

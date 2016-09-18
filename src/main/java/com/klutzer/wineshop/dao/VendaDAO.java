@@ -13,9 +13,7 @@ public class VendaDAO extends GenericDAO<Venda> {
 	
 	@Override
 	public Venda add(Venda venda) {
-		
 		for (ItemVenda item : venda.getItens()) {
-			item.calcularSubtotal();
 			item.setVenda(venda);
 			session.insert(item);
 		}

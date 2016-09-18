@@ -28,24 +28,28 @@
 				</div>
 			</form>
 			<div class="col-sm-12">
+			<div class="table-responsive">
 				<table class="table table-striped" ng-show="pedido.itens.length > 0">
 					<tr>
 						<th>Vinho</th>
-						<th>Tipo</th>
 						<th>Qtde</th>
 						<th>V. Un.</th>
 						<th>Total</th>
 						<th></th>
 					</tr>
 					<tr ng-repeat="i in pedido.itens">
-						<td>{{i.vinho.descricao}}</td>
-						<td>{{i.vinho.tipo.descricao}}</td>
+						<td>{{i.vinho.descricao}} - {{i.vinho.tipo.descricao}}</td>
 						<td>{{i.qtde}}</td>
 						<td>{{i.vinho.valor | currency}}</td>
 						<td>{{i.vinho.valor * i.qtde | currency}}</td>
 						<td><a href="" ng-click="removerItem($index)" class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"/></td>
 					</tr>
 				</table>
+				</div>
+				<div ng-show="pedido.itens.length > 0">
+					<button class="btn btn-danger" ng-click="limparPedido()">Limpar Pedido</button>
+					<button class="btn btn-primary" ui-sref="main.finalizarPedido">Finalizar Pedido</button>
+				</div>
 			</div>
 		</div>
 	</div>

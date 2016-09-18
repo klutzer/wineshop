@@ -30,9 +30,14 @@ angular.module("wineshop").controller("novoPedidoCtrl", function($scope, $cookie
 		storePedido();
 	}
 	
+	$scope.limparPedido = function() {
+		$cookies.remove(KEYS.pedidoAtual);
+		loadPedido();
+	}
+	
 	var verificaDuplicado = function(item) {
-		for (var i in $scope.pedido.itens) {
-			if (i.vinho.id === item.vinho.id) {
+		for (var i = 0; i < $scope.pedido.itens.length; i++) {
+			if ($scope.pedido.itens[i].vinho.id === item.vinho.id) {
 				return true;
 			}
 		}

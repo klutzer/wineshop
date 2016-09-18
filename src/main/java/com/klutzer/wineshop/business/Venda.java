@@ -1,6 +1,7 @@
 package com.klutzer.wineshop.business;
 
-import static com.klutzer.wineshop.utils.ValuesUtils.*;
+import static com.klutzer.wineshop.utils.ValuesUtils.bg;
+import static com.klutzer.wineshop.utils.ValuesUtils.money;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

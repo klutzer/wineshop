@@ -37,7 +37,7 @@ public class CustomObjectMapper extends ObjectMapper {
 		registerModule(module);
 	}
 	
-	private class MoneySerializer extends JsonSerializer<Money> {
+	public static class MoneySerializer extends JsonSerializer<Money> {
 
 		@Override
 		public void serialize(Money value, JsonGenerator gen, SerializerProvider serializers)
@@ -47,7 +47,7 @@ public class CustomObjectMapper extends ObjectMapper {
 		
 	}
 	
-	private class MoneyDeserializer extends JsonDeserializer<Money> {
+	public static class MoneyDeserializer extends JsonDeserializer<Money> {
 
 		@Override
 		public Money deserialize(JsonParser p, DeserializationContext ctxt)
