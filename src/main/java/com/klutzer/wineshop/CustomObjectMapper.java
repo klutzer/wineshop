@@ -42,7 +42,7 @@ public class CustomObjectMapper extends ObjectMapper {
 		@Override
 		public void serialize(Money value, JsonGenerator gen, SerializerProvider serializers)
 				throws IOException, JsonProcessingException {
-			gen.writeString(value.toString());
+			gen.writeString(value.getAmount().toString());
 		}
 		
 	}

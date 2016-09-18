@@ -6,15 +6,47 @@
 			</div>
 			<form name="formCadastro" class="form-group">
 				<div class="col-sm-8">
-					<label for="vinho">Selecione um Vinho</label> <select
-						class="form-control" ng-model="item.vinho" name="vinho">
+					<label for="vinho">Selecione um Vinho</label> 
+					<select class="form-control" ng-model="item.vinho" name="vinho"
+					ng-options="vinho.descricao + ' (' + (vinho.valor | currency) + ')' group by vinho.tipo.descricao for vinho in vinhos"
+					ng-required="true">
+						<option value="">Selecione um vinho</option>
 					</select>
 				</div>
 				<div class="col-sm-4">
-					<label for="qtde">Quantidade</label> <input type="number"
-						class="form-control" ng-model="item.qtde" name="qtde"></input>
+					<label for="qtde">Quantidade</label> 
+					<input type="number" min="1"
+						class="form-control" ng-model="item.qtde" name="qtde" required>
+					</input>
+					<span class="help-block" ng-show="formCadastro.qtde.$invalid">
+						Quantidade inválida!
+					</span>
+				</div>
+				<div class="col-sm-12">
+					<button class="btn btn-primary" ng-click="adicionarItem(item)"
+					ng-disabled="formCadastro.$invalid">Adicionar</button>
 				</div>
 			</form>
+			<div class="col-sm-12">
+				<table class="table table-striped" ng-show="pedido.itens.length > 0">
+					<tr>
+						<th>Vinho</th>
+						<th>Tipo</th>
+						<th>Qtde</th>
+						<th>V. Un.</th>
+						<th>Total</th>
+						<th></th>
+					</tr>
+					<tr ng-repeat="i in pedido.itens">
+						<td>{{i.vinho.descricao}}</td>
+						<td>{{i.vinho.tipo.descricao}}</td>
+						<td>{{i.qtde}}</td>
+						<td>{{i.vinho.valor | currency}}</td>
+						<td>{{i.vinho.valor * i.qtde | currency}}</td>
+						<td><a href="" ng-click="removerItem($index)" class="glyphicon glyphicon-remove" style="color:red" aria-hidden="true"/></td>
+					</tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </div>

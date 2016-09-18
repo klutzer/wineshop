@@ -1,6 +1,6 @@
 package com.klutzer.wineshop.business;
 
-public class BasicBean {
+public abstract class BasicBean {
 
 	protected long id;
 

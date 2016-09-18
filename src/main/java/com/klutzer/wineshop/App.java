@@ -90,6 +90,7 @@ public class App extends ResourceConfig {
 		Vinho vinho = PropertiesProxy.create(Vinho.class);
 		BeanConfig vinhoCfg = new BeanConfig(Vinho.class, "vinhos")
 				.pk(vinho.getId(), "idvinhos", DBTypes.AUTOINCREMENT)
+				.field(vinho.getTipo().getId(), "idtipos", DBTypes.LONG)
 				.field(vinho.getDescricao(), DBTypes.STRING)
 				.field(vinho.getPeso(), DBTypes.BIGDECIMAL)
 				.field(vinho.getValor(), DBTypes.MONEY);
