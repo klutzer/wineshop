@@ -8,9 +8,8 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Venda {
+public class Venda extends BasicBean {
 
-	private long id;
 	private Cliente cliente;
 	private List<ItemVenda> itens;
 	private BigDecimal distancia;
@@ -18,12 +17,6 @@ public class Venda {
 	private Money totalFrete;
 	private Money totalVenda;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
 	public Cliente getCliente() {
 		return cliente;
 	}
