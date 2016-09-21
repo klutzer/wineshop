@@ -8,15 +8,25 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.DateTime;
+
 public class Venda extends BasicBean {
 
+	private DateTime dataHora;
 	private Cliente cliente;
 	private List<ItemVenda> itens;
 	private BigDecimal distancia;
 	private BigDecimal pesoTotal;
+	private Money valorItens;
 	private Money totalFrete;
 	private Money totalVenda;
 	
+	public DateTime getDataHora() {
+		return dataHora;
+	}
+	public void setDataHora(DateTime dataHora) {
+		this.dataHora = dataHora;
+	}
 	public Cliente getCliente() {
 		return cliente;
 	}
@@ -53,6 +63,12 @@ public class Venda extends BasicBean {
 	public void setTotalVenda(Money totalVenda) {
 		this.totalVenda = totalVenda;
 	}
+	public Money getValorItens() {
+		return valorItens;
+	}
+	public void setValorItens(Money valorItens) {
+		this.valorItens = valorItens;
+	}
 	
 	public void add(ItemVenda item) {
 		if (itens == null) {
@@ -68,11 +84,11 @@ public class Venda extends BasicBean {
 	 * problemas de arredondamento do Java, ao usar double ou Double
 	 */
 	public void calcularTotais() {
-		totalVenda = Money.ZERO;
+		valorItens = Money.ZERO;
 		pesoTotal = BigDecimal.ZERO;
 		for (ItemVenda item : itens) {
 			item.calcularSubtotal();
-			totalVenda = totalVenda.plus(item.getSubtotal());
+			valorItens = valorItens.plus(item.getSubtotal());
 			pesoTotal = pesoTotal.add(item.getVinho().getPeso().multiply(item.getQtde()));
 		}
 		totalFrete = money(pesoTotal.multiply(bg(5)));
@@ -80,7 +96,7 @@ public class Venda extends BasicBean {
 			totalFrete = money(totalFrete.multiply(distancia).getAmount()
 					.divide(bg(100), 5, RoundingMode.HALF_DOWN));
 		}
-		totalVenda = totalVenda.plus(totalFrete);
+		totalVenda = valorItens.plus(totalFrete);
 	}
 	
 }

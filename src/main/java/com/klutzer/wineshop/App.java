@@ -108,7 +108,7 @@ public class App extends ResourceConfig {
 				.field(cliente.getNome(), DBTypes.STRING);
 		
 		ItemVenda item = PropertiesProxy.create(ItemVenda.class);
-		BeanConfig itemCfg = new BeanConfig(ItemVenda.class, "itens")
+		BeanConfig itemCfg = new BeanConfig(ItemVenda.class, "itens_venda")
 				.pk(item.getVenda().getId(), "idvendas", DBTypes.LONG)
 				.pk(item.getVinho().getId(), "idvinhos", DBTypes.LONG)
 				.field(item.getQtde(), DBTypes.BIGDECIMAL)
@@ -117,9 +117,11 @@ public class App extends ResourceConfig {
 		Venda venda = PropertiesProxy.create(Venda.class);
 		BeanConfig vendaCfg = new BeanConfig(Venda.class, "vendas")
 				.pk(venda.getId(), "idvendas", DBTypes.AUTOINCREMENT)
+				.field(venda.getDataHora(), DBTypes.JODA_DATETIME)
 				.field(venda.getCliente().getId(), "idclientes", DBTypes.LONG)
 				.field(venda.getDistancia(), DBTypes.BIGDECIMAL)
 				.field(venda.getPesoTotal(), DBTypes.BIGDECIMAL)
+				.field(venda.getValorItens(), DBTypes.MONEY)
 				.field(venda.getTotalFrete(), DBTypes.MONEY)
 				.field(venda.getTotalVenda(), DBTypes.MONEY);
 		
