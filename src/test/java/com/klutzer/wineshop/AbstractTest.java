@@ -1,6 +1,10 @@
 package com.klutzer.wineshop;
 
+import java.util.List;
 import java.util.logging.Logger;
+
+import javax.ws.rs.client.Entity;
+import javax.ws.rs.core.GenericType;
 
 import org.glassfish.jersey.client.ClientConfig;
 import org.glassfish.jersey.filter.LoggingFilter;
@@ -54,6 +58,28 @@ public class AbstractTest extends JerseyTest {
 	
 	protected void commit() {
 		SQLUtils.commitTransaction(session().getConnection());
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T> T post(String path, T bean) {
+		return (T) target(path).request().post(Entity.json(bean), bean.getClass());
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected <T> T put(String path, T bean) {
+		return (T) target(path).request().put(Entity.json(bean), bean.getClass());
+	}
+	
+	protected <T> T getSingle(String path, Class<T> responseType) {
+		return target(path).request().get(responseType);
+	}
+	
+	protected <T> List<T> getList(String path, GenericType<List<T>> type) {
+		return target(path).request().get(type);
+	}
+	
+	protected <T> T delete(String path, Class<T> responseType) {
+		return target(path).request().delete(responseType);
 	}
 	
 }

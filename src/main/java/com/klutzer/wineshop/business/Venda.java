@@ -48,24 +48,40 @@ public class Venda extends BasicBean {
 	public BigDecimal getPesoTotal() {
 		return pesoTotal;
 	}
+	/**
+	 * @param pesoTotal
+	 * @deprecated Calculado pelo método {@link #calcularTotais()}
+	 */
 	public void setPesoTotal(BigDecimal pesoTotal) {
 		this.pesoTotal = pesoTotal;
 	}
 	public Money getTotalFrete() {
 		return totalFrete;
 	}
+	/**
+	 * @param totalFrete
+	 * @deprecated Calculado pelo método {@link #calcularTotais()}
+	 */
 	public void setTotalFrete(Money totalFrete) {
 		this.totalFrete = totalFrete;
 	}
 	public Money getTotalVenda() {
 		return totalVenda;
 	}
+	/**
+	 * @param totalVenda
+	 * @deprecated Calculado pelo método {@link #calcularTotais()}
+	 */
 	public void setTotalVenda(Money totalVenda) {
 		this.totalVenda = totalVenda;
 	}
 	public Money getValorItens() {
 		return valorItens;
 	}
+	/**
+	 * @param valorItens
+	 * @deprecated Calculado pelo método {@link #calcularTotais()}
+	 */
 	public void setValorItens(Money valorItens) {
 		this.valorItens = valorItens;
 	}
@@ -74,7 +90,6 @@ public class Venda extends BasicBean {
 		if (itens == null) {
 			itens = new ArrayList<>();
 		}
-		item.setVenda(this);
 		itens.add(item);
 	}
 	

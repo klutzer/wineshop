@@ -30,6 +30,10 @@ public class ItemVenda {
 	public Money getSubtotal() {
 		return subtotal;
 	}
+	/**
+	 * @param subtotal
+	 * @deprecated Calculado pelo método {@link #calcularSubtotal()}
+	 */
 	public void setSubtotal(Money subtotal) {
 		this.subtotal = subtotal;
 	}
