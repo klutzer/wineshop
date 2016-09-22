@@ -26,6 +26,17 @@ Então as chamadas REST poderão ser requisitadas a partir de `http://localhost:
 
 Para saber quais as chamadas podem ser executadas, acesse a documentação interativa da API: `http://localhost:8080/wineshop/docs`
 
+## Arquitetura do back-end
+O back-end do WineShop utiliza uma arquitetura RESTful desenvolvida com o *Jersey*, por ser a referência de implementação da especificação JAX-RS. Por utilizar REST, a arquitetura é *stateless*, ou seja, todas as chamadas ao recursos (URIs) são independentes e não fazem parte de uma sessão específica. Foi utilizado também um pool de conexões (HikariCP) para que as conexões ao banco de dados não precisem ser abertas em cada chamada, melhorando a performance.
+
+Ao requisitar um serviço (URI), uma ThreadLocal é criada para a requisição corrente, abrindo uma nova transação com o banco de dados e realizando o *commit* no término da requisição. Assim, todas as operações executadas em um determinado acesso farão parte de mesma transação e caso ocorra algum erro em alguma delas, será feito o *rollback*.
+
+Foi utilizado um container IoC que é responsável pela injeção das dependências e *autowire* das classes DAO. Desta forma, cada DAO utilizada será instanciada com todas suas dependências satisfeitas.
+
+Uma parte muito importante ao desenvolver uma API é a documentação. Para tal foi utilizado o *Swagger*, que gera dinamicamente a documentação da API através de uma biblioteca integrada ao JAX-RS. Todos os recursos disponibilizados pelo WineShop podem ser acessados e testados de forma interativa diretamente através da documentação (/docs).
+
+Neste projeto foi utilizado o banco de dados H2 em memória, já que por ser embarcado, é possível que com um simples `mvn jetty:run` toda a estrutura necessária para rodar o back-end com banco de dados seja criada, incluindo scripts de criação das tabelas e inserção de alguns dados por padrão. Como o banco de dados é criado diretamente na memória, os dados serão armazenados até que o servidor seja reiniciado. Mais detalhes pode ser visto na classe H2ConnectionManager, onde é possível configurar a URL do H2, fazendo-o manter os dados em arquivo, caso seja necessário. Porém, para execução em produção, é recomendável a utilização um banco de dados mais robusto, tal como o PostgreSQL, por exemplo.
+
 ## Por que utilizar MentaBean ao invés de JPA/Hibernate?
 Geralmente quando começamos um projeto em Java que envolve comunicação com algum banco de dados relacional, pensamos logo - muitas vezes antes até da escolha do próprio banco de dados - na utilização de ORMs JPA, tal como o Hibernate, certamente a implementação mais conhecida. A escolha do ORM para este projeto não se baseou em frameworks JPA, e vou tentar argumentar o porquê, expondo os pontos que considero importantes a serem analisados na escolha de um ORM:
 
