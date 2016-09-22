@@ -24,9 +24,10 @@ public class VendaTest extends AbstractTest {
 		// inserção dos tipos de vinho, diretamente no banco
 		TipoVinho tipo1 = new TipoVinho("Tinto");
 		TipoVinho tipo2 = new TipoVinho("Branco");
-		session().insert(tipo1);
-		session().insert(tipo2);
-		commit();
+		tipo1 = put("tipo", tipo1);
+		tipo2 = put("tipo", tipo2);
+		assertEquals(1, tipo1.getId());
+		assertEquals(2, tipo2.getId());
 		
 		Vinho vinho1 = new Vinho();
 		vinho1.setDescricao("Vinho Teste 1");
