@@ -29,7 +29,7 @@ public class VinhoDAO extends GenericDAO<Vinho> {
 				// faz join com os tipos e popula cada tipo dentro do respectivo vinho
 				.join(aliasTipo).pkOf(aliasTipo).in(aliasVinho).inProperty(vinho.getTipo())
 				.orderBy()
-				.asc(aliasVinho, vinho.getTipo().getId(), vinho.getDescricao())
+				.asc(aliasVinho, vinho.getDescricao())
 				.executeQuery();
 				
 	}

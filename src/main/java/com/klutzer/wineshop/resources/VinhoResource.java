@@ -3,9 +3,11 @@ package com.klutzer.wineshop.resources;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -36,4 +38,14 @@ public class VinhoResource {
 	public Vinho add(Vinho vinho) {
 		return vinhoDAO.save(vinho);
 	}
+	
+	@ApiOperation("Remove um vinho cadastrado")
+	@DELETE
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public BeanResponse delete(@PathParam("id") long id) {
+		return new BeanResponse().setMsg(
+				vinhoDAO.delete(new Vinho(id)) ? "Vinho excluído" : "Nada foi excluído");
+	}
+	
 }
