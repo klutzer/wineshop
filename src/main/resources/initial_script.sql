@@ -28,7 +28,7 @@ create table vendas (
 );
 
 create table itens_venda (
-	idvendas bigint not null references vendas,
+	idvendas bigint not null references vendas on update cascade on delete cascade,
 	idvinhos bigint not null references vinhos,
 	qtde double precision not null,
 	subtotal numeric not null,

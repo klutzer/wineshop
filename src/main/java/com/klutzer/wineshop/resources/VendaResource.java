@@ -3,9 +3,11 @@ package com.klutzer.wineshop.resources;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -16,7 +18,7 @@ import com.klutzer.wineshop.dao.VendaDAO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
-@Api("Vendas/Pedidos")
+@Api("Vendas \\ Pedidos")
 @Path("/venda")
 public class VendaResource {
 
@@ -45,5 +47,14 @@ public class VendaResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Venda> listAll() {
 		return vendaDAO.listAll();
+	}
+	
+	@ApiOperation("Remove um pedido")
+	@DELETE
+	@Path("{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public BeanResponse delete(@PathParam("id") long id) {
+		return new BeanResponse().setMsg(
+				vendaDAO.delete(new Venda(id)) ? "Pedido removido!" : "Nada foi excluído!");
 	}
 }

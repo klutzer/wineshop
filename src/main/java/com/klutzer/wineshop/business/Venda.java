@@ -21,6 +21,12 @@ public class Venda extends BasicBean {
 	private Money totalFrete;
 	private Money totalVenda;
 	
+	public Venda() {}
+	
+	public Venda(long id) {
+		super(id);
+	}
+	
 	public DateTime getDataHora() {
 		return dataHora;
 	}

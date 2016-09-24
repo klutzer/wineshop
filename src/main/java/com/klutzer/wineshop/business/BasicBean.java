@@ -3,6 +3,12 @@ package com.klutzer.wineshop.business;
 public abstract class BasicBean {
 
 	protected long id;
+	
+	public BasicBean() {}
+	
+	public BasicBean(long id) {
+		this.id = id;
+	}
 
 	public long getId() {
 		return id;
