@@ -38,7 +38,7 @@ public class ClienteResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Cliente> listAll() {
-		return clienteDAO.listByExample(new Cliente());
+		return clienteDAO.listAll();
 	}
 	
 	@ApiOperation("Busca um cliente específico")

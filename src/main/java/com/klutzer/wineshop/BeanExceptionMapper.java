@@ -27,19 +27,22 @@ public class BeanExceptionMapper implements ExceptionMapper<BeanException> {
 	public Response toResponse(BeanException ex) {
 
 		Status status = Status.INTERNAL_SERVER_ERROR;
-		String msg = "Erro interno: "+ex.getMessage();
+		String msg = "Erro interno";
 
 		if (ex.getCause() instanceof SQLException) {
 			SQLException sqlEx = (SQLException) ex.getCause();
 			if (msgs.containsKey(sqlEx.getSQLState())) {
 				status = Status.CONFLICT;
 				msg = msgs.get(sqlEx.getSQLState());
+			}else {
+				msg = "Erro ao realizar operação com o banco de dados";
 			}
 		}
 
 		return Response.status(status)
 				.entity(new BeanResponse()
 						.setMsg(msg)
+						.setMsgDetail(ex.getMessage())
 						.setSuccess(false))
 				.type(MediaType.APPLICATION_JSON).build();
 	}

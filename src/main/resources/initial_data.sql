@@ -1,5 +1,25 @@
 insert into clientes (nome) values ('Érico Knapp Lutzer');
 insert into clientes (nome) values ('João da Silva');
+insert into clientes (nome) values ('Maria Cardoso');
+insert into clientes (nome) values ('José Fonseca');
+insert into clientes (nome) values ('Guilherme Beltrano');
+insert into clientes (nome) values ('Rodrigo Vás');
+insert into clientes (nome) values ('Camilo Ibarra');
+insert into clientes (nome) values ('Gustavo Fucks');
+insert into clientes (nome) values ('José Silva');
+insert into clientes (nome) values ('Ana Rosa Oliveira');
+insert into clientes (nome) values ('Joana Vasconcelos');
+insert into clientes (nome) values ('Pietra Jesus');
+insert into clientes (nome) values ('Falcão Garcia');
+insert into clientes (nome) values ('Neymar Jr.');
+insert into clientes (nome) values ('Fausto Silva');
+insert into clientes (nome) values ('Sílvio Santos');
+insert into clientes (nome) values ('Ana Maria Braga');
+insert into clientes (nome) values ('Jorge Jorge');
+insert into clientes (nome) values ('Wesley Safadão');
+insert into clientes (nome) values ('Ricardo Gomes');
+insert into clientes (nome) values ('Josnei dos Santos');
+insert into clientes (nome) values ('Rafaela Brescan');
 
 insert into tipos (descricao) values ('Tinto');
 insert into tipos (descricao) values ('Branco');
